@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useRecoilState } from "recoil";
+import { dataAtomFamily } from "./atom";
+import { backboneStore } from "./backboneStore";
 
-function App() {
+const App = () => {
+  const [data, setData] = useRecoilState(dataAtomFamily("1"));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <main>
+        Value from recoil: {data} <br />
+        Value from backboneStore: {backboneStore.get()}
+        <br />
+        <button
+          type="button"
+          onClick={() => {
+            setData(`${Date.now()}`);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          set recoil state to current timestamp
+        </button>
+        <br />
+        <button
+          type="button"
+          onClick={() => {
+            backboneStore.set(`${Date.now()}`);
+          }}
+        >
+          set backboneStore to current timestamp
+        </button>
+        <br />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
