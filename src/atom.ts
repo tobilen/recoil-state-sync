@@ -19,11 +19,6 @@ const syncStorageEffect: AtomEffect<string | null> = ({
   backboneStore.onChange((newData) => {
     setSelf(newData); // Call asynchronously to change value
   });
-
-  // Cleanup remote storage subscription
-  return () => {
-    backboneStore.onChange(() => {});
-  };
 };
 
 export const dataAtomFamily = atomFamily({

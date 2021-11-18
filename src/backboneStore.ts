@@ -1,6 +1,6 @@
 class BackboneStore {
   state: string = "some state";
-  changeCallback: (newState: string) => void = () => {};
+  changeCallbacks: ((newState: string) => void)[] = [];
 
   get() {
     return this.state;
@@ -8,11 +8,11 @@ class BackboneStore {
 
   set(newState: string) {
     this.state = newState;
-    this.changeCallback(newState);
+    this.changeCallbacks.map((cb) => cb(newState));
   }
 
   onChange(changeCallback: (newState: string) => void) {
-    this.changeCallback = changeCallback;
+    this.changeCallbacks = [...this.changeCallbacks, changeCallback];
   }
 }
 

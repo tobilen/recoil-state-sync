@@ -8,10 +8,18 @@ import { RecoilRoot } from "recoil";
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <App root="root1" />
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root1")
+);
+ReactDOM.render(
+  <React.StrictMode>
+    <RecoilRoot>
+      <App root="root2" />
+    </RecoilRoot>
+  </React.StrictMode>,
+  document.getElementById("root2")
 );
 
 // If you want to start measuring performance in your app, pass a function

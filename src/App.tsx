@@ -4,10 +4,11 @@ import { useRecoilState } from "recoil";
 import { dataAtomFamily } from "./atom";
 import { backboneStore } from "./backboneStore";
 
-const App = () => {
+const App: React.FC<{ root: string }> = ({ root }) => {
   const [data, setData] = useRecoilState(dataAtomFamily("1"));
   return (
     <div className="App">
+      <header>App in {root}</header>
       <main>
         Value from recoil: {data} <br />
         Value from backboneStore: {backboneStore.get()}
